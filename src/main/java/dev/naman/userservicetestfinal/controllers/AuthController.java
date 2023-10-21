@@ -7,10 +7,7 @@ import dev.naman.userservicetestfinal.models.User;
 import dev.naman.userservicetestfinal.services.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -39,6 +36,12 @@ public class AuthController {
         UserDto userDto = authService.signUp(request.getEmail(), request.getPassword());
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
+
+//    @GetMapping("/signup")
+//    public String signUp() {
+////        UserDto userDto = authService.signUp(request.getEmail(), request.getPassword());
+//        return "hello";
+//    }
 
     @PostMapping("/validate")
     public ResponseEntity<SessionStatus> validateToken(ValidateTokenRequestDto request) {
