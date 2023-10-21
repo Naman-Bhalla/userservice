@@ -23,9 +23,6 @@ public class SpringSecurity {
 //        http.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll());
 //        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/auth/*").authenticated());
         return http.build();
-
-        Collections.sort();
-        HashMap
     }
     // Object that handles what all api endpoints should be authenticated
     // v/s what all shouldn't be authenticated
