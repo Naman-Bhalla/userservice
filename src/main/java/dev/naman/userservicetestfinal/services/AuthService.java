@@ -1,11 +1,14 @@
 package dev.naman.userservicetestfinal.services;
 
 import dev.naman.userservicetestfinal.dtos.UserDto;
+import dev.naman.userservicetestfinal.models.Role;
 import dev.naman.userservicetestfinal.models.Session;
 import dev.naman.userservicetestfinal.models.SessionStatus;
 import dev.naman.userservicetestfinal.models.User;
 import dev.naman.userservicetestfinal.repositories.SessionRepository;
 import dev.naman.userservicetestfinal.repositories.UserRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.MacAlgorithm;
 import lombok.Setter;
@@ -23,10 +26,7 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class AuthService {
@@ -34,7 +34,7 @@ public class AuthService {
     private SessionRepository sessionRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public AuthService(UserRepository userRepository, SessionRepository sessionRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AuthService(UserRepository userRepository, SessionRepository sessionRepository ,BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -52,7 +52,7 @@ public class AuthService {
 
         if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
             throw new RuntimeException("Wrong username password");
-//            return null;
+////            return null;
         }
 
         String token = RandomStringUtils.randomAlphanumeric(30);
@@ -155,8 +155,17 @@ public class AuthService {
         }
 
 
-        Jwts.parser()
-                .build();
+        Jws<Claims> claimsJws = Jwts.parser()
+                .build()
+                .parseSignedClaims(token);
+
+        String email = (String) claimsJws.getPayload().get("email");
+        List<Role> roles = (List<Role>) claimsJws.getPayload().get("roles");
+        Date createdAt = (Date) claimsJws.getPayload().get("createdAt");
+
+        if (createdAt.before(new Date())) {
+            return SessionStatus.ENDED;
+        }
 
 
 //        if (!session.)
