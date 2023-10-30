@@ -82,7 +82,20 @@
             <version>0.12.3</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>9.22.3</version>
+        </dependency>
+
     </dependencies>
+    <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
+
+
 
     <build>
         <plugins>
