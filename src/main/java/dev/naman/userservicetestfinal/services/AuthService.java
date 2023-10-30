@@ -79,7 +79,7 @@ public class AuthService {
 
         Map<String, Object>  jsonForJwt = new HashMap<>();
         jsonForJwt.put("email", user.getEmail());
-        jsonForJwt.put("roles", user.getRoles());
+//        jsonForJwt.put("roles", user.getRoles());
         jsonForJwt.put("createdAt", new Date());
         jsonForJwt.put("expiryAt", new Date(LocalDate.now().plusDays(3).toEpochDay()));
 

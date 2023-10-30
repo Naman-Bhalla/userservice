@@ -43,7 +43,7 @@ public class UserService {
         }
 
         User user = userOptional.get();
-        user.setRoles(Set.copyOf(roles));
+//        user.setRoles(Set.copyOf(roles));
 
         User savedUser = userRepository.save(user);
 
