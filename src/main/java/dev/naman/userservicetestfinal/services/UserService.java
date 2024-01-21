@@ -25,13 +25,15 @@ public class UserService {
     }
 
     public UserDto getUserDetails(Long userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-
-        if (userOptional.isEmpty()) {
-            return null;
-        }
-
-        return UserDto.from(userOptional.get());
+        System.out.println("I got the request");
+        return new UserDto();
+//        Optional<User> userOptional = userRepository.findById(userId);
+//
+//        if (userOptional.isEmpty()) {
+//            return null;
+//        }
+//
+//        return UserDto.from(userOptional.get());
     }
 
     public UserDto setUserRoles(Long userId, List<Long> roleIds) {
