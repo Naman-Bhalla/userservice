@@ -98,6 +98,13 @@
             <artifactId>flyway-mysql</artifactId>
             <version>9.22.3</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+
 
     </dependencies>
     <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
